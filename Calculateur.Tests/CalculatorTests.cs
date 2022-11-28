@@ -112,5 +112,102 @@ namespace Calculateur.Tests
             Calculator.Division(numerateur, denominateur);
 
         }
+        
+        [TestMethod]
+        [TestCategory("Exo")]
+        public void NbChar_ParamNull_RetrunZero()
+        {
+            //Arrange
+            string chaine = null;
+            //Act:
+            int resultat = Calculator.NbChar(chaine);
+            //Assert
+            Assert.AreEqual(0, resultat);
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        public void NbChar_ParamEmpty_RetrunZero()
+        {
+            //Arrange
+            string chaine = string.Empty;
+            //Act:
+            int resultat = Calculator.NbChar(chaine);
+            //Assert
+            Assert.AreEqual(0, resultat);
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        public void NbChar_ParamNotEmptyNotNull_RetrunSize()
+        {
+            //Arrange
+            string chaine = "ddddd";
+            //Act:
+            int resultat = Calculator.NbChar(chaine);
+            //Assert
+            Assert.AreEqual(5, resultat);
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NbMots_ParamNull_RetrunException()
+        {
+            //Arrange
+            string chaine = null;
+            //Act:
+            Calculator.NbMots(chaine);
+          
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NbMots_ParamEmpty_RetrunException()
+        {
+            //Arrange
+            string chaine = string.Empty;
+            //Act:
+            Calculator.NbMots(chaine);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        public void NbMots_ParamNotEmptyNotNull_RetrunNbMots()
+        {
+            //Arrange
+            string chaine = " ceci est une  chaine ";
+            //Act:
+            int resultat = Calculator.NbMots(chaine);
+            //Assert
+            Assert.AreEqual(4,resultat);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        [ExpectedException(typeof (ArgumentException))]
+        public void SommeTab_ParamNull_RetrunException()
+        {
+
+            Calculator.SommeTab(null);
+            
+        }
+
+        [TestMethod]
+        [TestCategory("Exo")]
+        public void SommeTab_ParamNotNull_RetrunSommeItem()
+        {
+            //Arrange
+            int[] tab = { 10, 5, 3, 8 };
+            int attendu = 26;
+            //Act
+            int obtenu = Calculator.SommeTab(tab);
+            //Assert
+            Assert.AreEqual(attendu,obtenu);
+
+        }
     }
 }
