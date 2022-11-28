@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebMVC.Repositories;
+using WebMVC.Services;
 
 namespace WebMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private ContactService service = new ContactService(new ContactFichierRepository());
         public ActionResult Index()
         {
             return View();
