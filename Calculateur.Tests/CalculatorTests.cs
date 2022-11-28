@@ -209,5 +209,110 @@ namespace Calculateur.Tests
             Assert.AreEqual(attendu,obtenu);
 
         }
+        [TestMethod]
+        [TestCategory("Test méthode privée via une méthode publique")]
+        public void Add_AvecIsPositif_Private_ParamsPositifs_ReturnSomme()
+        {
+            //Arrange
+            int x = 10;
+            int y = 5;
+            int attendu = 15;
+
+            //act
+            int obtenu = Calculator.Add(x,y);
+
+            //Assert
+            Assert.AreEqual(attendu, obtenu);
+        }
+
+        [TestMethod]
+        [TestCategory("Test méthode privée via une méthode publique")]
+        [ExpectedException (typeof (ArgumentException))]
+        public void Add_AvecIsPositif_Private_Param1Positif_ParamNegatif_ReturnException()
+        {
+            //Arrange
+            int x = 10;
+            int y = -5;
+            Calculator.Add(x, y);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Test méthode privée via une méthode publique")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Add_AvecIsPositif_Private_Param1Negatif_Param2Negatif_ReturnException()
+        {
+            //Arrange
+            int x = -10;
+            int y = -5;
+            Calculator.Add(x, y);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Test méthode privée via une méthode publique")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Add_AvecIsPositif_Private_Param1Negatif_Param2Positif_ReturnException()
+        {
+            //Arrange
+            int x = -10;
+            int y = 5;
+            Calculator.Add(x, y);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Test d'une méthode privée static sans passer par une méthode publique")]
+        public void IsPositif_ParamPositif_ReturnTrue()
+        {
+            //Arrange
+            int x = 10;
+            PrivateType privateType = new PrivateType(typeof(Calculator));
+
+            //Act
+            bool obtenu = (bool)privateType.InvokeStatic("IsPositif", x);
+
+            //Assert
+            Assert.IsTrue(obtenu);
+
+        }
+        [TestMethod]
+        [TestCategory("Test d'une méthode privée static sans passer par une méthode publique")]
+        public void IsPositif_ParamNégatif_ReturnFalse()
+        {
+            //Arrange
+            int x = -10;
+            PrivateType privateType = new PrivateType(typeof(Calculator));
+
+            //Act
+            bool obtenu = (bool)privateType.InvokeStatic("IsPositif", x);
+
+            //Assert
+            Assert.IsFalse(obtenu);
+
+        }
+
+        //Test d'une méthode private non static
+        [TestMethod]
+        [TestCategory("Test d'une méthode privée non static")]
+        public void IsNegatif_ParamNegatif_ReturnTrue()
+        {
+            int x = -10;
+            PrivateObject privateObject = new PrivateObject(typeof(Calculator));
+
+            bool obtenu = (bool)privateObject.Invoke("IsNegatif", x);
+            Assert.IsTrue(obtenu);
+        }
+
+        [TestMethod]
+        [TestCategory("Test d'une méthode privée non static")]
+        public void IsNegatif_ParamPositif_ReturnFalse()
+        {
+            int x = 10;
+            PrivateObject privateObject = new PrivateObject(typeof(Calculator));
+
+            bool obtenu = (bool)privateObject.Invoke("IsNegatif", x);
+            Assert.IsFalse(obtenu);
+        }
     }
 }
