@@ -20,7 +20,7 @@ namespace WebMVC.Tests.Controllers
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
-
+          
             // Assert
             Assert.IsNotNull(result);
         }
