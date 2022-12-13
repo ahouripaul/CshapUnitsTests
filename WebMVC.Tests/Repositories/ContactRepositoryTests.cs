@@ -12,7 +12,7 @@ namespace WebMVC.Tests.Repositories
          * 1- Installer Entity Framework 6.4
          * 2- Dans app.config - fournir la chaine de connexion vers la BD de tests
          * 
-         */
+         */8
 
         ContactRepository contactRepository;
 
